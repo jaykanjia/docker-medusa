@@ -1,0 +1,39 @@
+# node
+node_modules
+build
+dist
+README.md
+
+# Package Manager
+npm-debug.log
+*.log
+
+# Version Control
+.git
+.gitignore
+
+# Docker Files
+Dockerfile
+.dockerignore
+
+# IDE and Editor Files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Environment Files
+.env
+.env.local
+.env.*
+
+# Testing
+coverage
+*.test.js
+
+# DS Files
+.DS_Store
+
+# Other
+.medusa
+.minio
