@@ -34,12 +34,20 @@ COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/medusa-config.ts ./medusa-config.ts
 COPY --from=builder /app/instrumentation.ts ./instrumentation.ts
 COPY --from=builder /app/src ./src
+COPY --from=builder /app/migrations.sh ./migrations.sh
 
 EXPOSE 9000
 
 # Install server dependencies
 WORKDIR /app/.medusa/server
 RUN yarn install --production
+
+# RUN medusa migrations run 
+COPY migrations.sh /app/.medusa/server/migrations.sh
+RUN chmod +x /app/.medusa/server/migrations.sh
+RUN /app/.medusa/server/migrations.sh
+
+RUN rm /app/.medusa/server/migrations.sh
 
 # Set proper ownership
 RUN chown -R medusa-user:medusa-group /app
